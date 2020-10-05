@@ -1,8 +1,8 @@
-function login() {
+function Login() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default login;
+  export default Login;

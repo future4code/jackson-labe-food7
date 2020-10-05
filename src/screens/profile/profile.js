@@ -1,8 +1,8 @@
-function profile() {
+function Profile() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default profile;
+  export default Profile;

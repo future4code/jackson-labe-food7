@@ -1,8 +1,8 @@
-function home() {
+function Home() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default home;
+  export default Home;
