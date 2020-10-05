@@ -1,8 +1,8 @@
-function Cart() {
+function Busca() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default Cart;
+  export default Busca;

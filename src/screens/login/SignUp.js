@@ -1,8 +1,9 @@
-function Cart() {
+function SignUp() {
     return (
       <div className="App">
+          
       </div>
     );
   }
   
-  export default Cart;
+  export default SignUp;

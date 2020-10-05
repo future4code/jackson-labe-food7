@@ -1,8 +1,8 @@
-function restaurant() {
+function Restaurant() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default restaurant;
+  export default Restaurant;
