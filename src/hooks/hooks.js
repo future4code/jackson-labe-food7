@@ -1,8 +1,8 @@
-function hooks() {
+function Hooks() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default hooks;
+  export default Hooks;

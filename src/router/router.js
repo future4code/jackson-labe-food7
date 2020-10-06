@@ -3,9 +3,9 @@ import Home from '../screens/home/Home'
 import SignUp from "../screens/login/SignUp"
 import Busca from "../screens/home/Busca"
 import Address from "../screens/login/Address"
-import Restaurant from "../screens/restaurant/restaurant"
+import Restaurant from "../screens/restaurant/Restaurant"
 import Cart from "../screens/cart/cart"
-import Profile from "../screens/profile/profile"
+import Profile from "../screens/profile/Profile"
 import ProfileEdit from "../screens/profile/ProfileEdit"
 import ProfileEditAddress from "../screens/profile/ProfileEditAddress"
 
