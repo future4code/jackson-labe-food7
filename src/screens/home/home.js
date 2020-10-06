@@ -5,7 +5,7 @@ import {searchSVG} from './img/search.svg'
 import searchPNG from './img/search.png'
 import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
-import { useForm } from '../../hooks/useForm'
+import useForm from '../../hooks/useForm'
 
 
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
@@ -14,7 +14,7 @@ const baseHeader = {headers:{auth: token}}
 
 
 function Home() {
-    const [form, handleInputChange] = useForm({search:''})
+    const {form, handleInputChange} = useForm({search:''})
     const [restaurants, setRestaurants] = useState([])
 
     const getRestaurants = () => {
