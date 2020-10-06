@@ -1,93 +1,66 @@
+import axios from 'axios';
 import React from 'react';
-import styled from 'styled-components';
-import logo1x from '../../img/imgLogin/logo1x.png'
+import { useHistory } from 'react-router-dom';
+import useForm from '../../hooks/useForm';
+import logo1x from '../../img/imgLogin/logo1x.png';
+import { goToSignUp } from '../../Router/GoToPages';
+import {PageContainer, Logo, Title, Text, InputContainer, Input, ButtonContainer, Button, ButtonOnClick} from './LoginStyled'
 
 
-
-const PageContainer = styled.div`
-  display:flex;
-  flex-direction:column;
-  width: 360px;
-  height: 640px;
-  background-color:lightsteelblue; 
-  align-items: center;
-`
-
-const Logo = styled.img`
-  width: 104px;
-  height: 58px;
-  margin-top:88px;
-`
-
-const Text = styled.text`
-  width: 296px;
-  height: 18px;
-  font-family: Roboto;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.39px;
-  text-align: center;
-  color: #000000;
-`
-const Title = styled.div`
-  width: 360px;
-  height: 42px;
-  margin-top:16px;
-`
-
-const InputContainer = styled.div`
-  width: 360px;
-  height: 72px;
-  margin-top:8px;
-  margin-bottom:8px;
-`
-const Input = styled.input`
-  width: 328px;
-  height: 50px;
-  border-radius: 2px;
-  border: solid 1px #b8b8b8;
-  font-family: Roboto;
-  font-size: 16px;
-  letter-spacing: -0.39px;
-`
-
-const ButtonContainer = styled.div`
-  width: 360px;
-  height: 42px;
-  margin-bottom: 16px;
-`
-
-const Button = styled.button`
-  width: 328px;
-  height: 42px;
-  border-radius: 2px;
-  background-color: #5cb646;
-  border: none;
-`
 
 const Login = () => {
+
+  const history = useHistory()
+  const {form, onChange, resetState}  = useForm({
+    email:"",
+    password:""
+  })
+  
+  
+  const handleInputChange = (event) =>{
+    const { name, value } = event.target
+    onChange(name, value)
+  } 
+  
+  const handleSubmittion = (event) =>{
+    event.preventDefault()
+    handleLogin()
+    resetState()
+  }
+  
+  const handleLogin = () => {
+    axios
+      .post("https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/login", form)
+      .then(response => {
+        localStorage.setItem("token", response.data.token)
+        history.push("/home")
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
+  }
+
     return (
       <PageContainer>
         <Logo src={logo1x} />
         <Title>
           <Text>Entrar</Text>
         </Title>
-        <InputContainer>
-          <Input/>
-        </InputContainer>
-        <InputContainer>
-          <Input/>
-        </InputContainer>
-        <ButtonContainer>
-          <Button>
-            <Text>Entrar</Text>
-          </Button>
-        </ButtonContainer>
+        <form onSubmit={handleSubmittion} autoComplete="off">
+          <InputContainer>
+            <Input placeholder=" Email" name="email" value={form.name} required onChange={handleInputChange}/>
+          </InputContainer>
+          <InputContainer>
+            <Input placeholder=" Senha" name="password" value={form.password} required type="password"  onChange={handleInputChange}/>
+          </InputContainer>
+          <ButtonContainer>
+            <Button type="submit">
+              <Text>Entrar</Text>
+            </Button>
+          </ButtonContainer>
+        </form>
         <Title>
-          <Text>Não possui cadastro? Clique aqui.</Text>
+          <Text>Não possui cadastro?<ButtonOnClick onClick={() => goToSignUp(history)}>Clique aqui.</ButtonOnClick></Text>
         </Title>
       </PageContainer>
     );
