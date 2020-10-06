@@ -72,7 +72,7 @@ const BackButton = styled.button`
   height: 24px;
   background:none;
   border:none;
-  margin-top:30px;
+  margin-top:20px;
 `
 
 const SignUp = () => {
@@ -85,7 +85,7 @@ const SignUp = () => {
         <Title>
           <Text>Cadastrar</Text>
         </Title>
-          <InputContainer>
+        <InputContainer>
           <Input placeholder="Nome"/>
         </InputContainer>
         <InputContainer>
