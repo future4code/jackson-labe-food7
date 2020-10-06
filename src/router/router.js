@@ -4,29 +4,34 @@ import SignUp from "../screens/login/SignUp"
 import Busca from "../screens/home/Busca"
 import Address from "../screens/login/Address"
 import Restaurant from "../screens/restaurant/Restaurant"
-import Cart from "../screens/cart/cart"
+import Cart from "../screens/cart/Cart"
 import Profile from "../screens/profile/Profile"
 import ProfileEdit from "../screens/profile/ProfileEdit"
 import ProfileEditAddress from "../screens/profile/ProfileEditAddress"
+import Login from "../screens/login/Login"
+import React from 'react';
 
 function Router() {
     return (
       <BrowserRouter>
         <Switch>
           {/*páginas relacionadas a HOME*/} 
-          <Route exact path={['/', '/home']}>
+          <Route exact path='/home'>
             <Home/>
           </Route>
+          
           <Route exact path='/home/busca'>
             <Busca/>
           </Route>
 
-          <Route exact path='/entrar'>
+          <Route exact path={['/', '/entrar']}>
             <Login/>
           </Route>
+
           <Route exact path='/cadastrar'>
             <SignUp/>
           </Route>
+
           <Route exact path='/cadastrar/endereco'>
             <Address/>
           </Route>
