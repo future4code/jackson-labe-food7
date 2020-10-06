@@ -1,8 +1,8 @@
-function components() {
+function Components() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default components;
+  export default Components;
