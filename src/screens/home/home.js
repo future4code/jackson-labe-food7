@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { SearchImg, FilterBar, FilterButton, Header, PageBox, SearchBox, SearchIcon, SearchInput, Title, TitleIn } from './styled'
 import {searchSVG} from './img/search.svg'
@@ -10,6 +11,7 @@ import { useForm } from '../../hooks/useForm'
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVHSDRzV0g1U1Eza2pleFZDdzVEIiwibmFtZSI6IlJhcGhhZWwiLCJlbWFpbCI6InJhcGhhZWxAZW1haWwuY29tIiwiY3BmIjoiMTIzLjQ1Ni43ODktMDAiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUnVhIExhYmVuaWRhLCAyMDIwLCA4MyAtIExhcmdvIGRhIENhc2NhdGEiLCJpYXQiOjE2MDE5NTc2Nzl9.vvm1TIwY3S8Qij23ZrlFRtDXciep_jJgR7sKsTtTMpU'
 const baseHeader = {headers:{auth: token}}
+
 
 function Home() {
     const [form, handleInputChange] = useForm({search:''})
