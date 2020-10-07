@@ -15,15 +15,7 @@ const Address = () => {
     state:"",
     complement:""
   })
-
-  // useEffect(() => {
-  //   const token = window.localStorage.getItem("token")
-
-  //   if (token) {
-  //     history.push("/home")
-  //   }
-  // }, [history])
-
+  
   const handleInputChange = (event) =>{
     const { name, value } = event.target
     onChange(name, value)
