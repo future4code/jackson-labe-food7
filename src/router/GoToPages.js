@@ -5,7 +5,7 @@ export const goToSearch = (history) => {
     history.push("/home/busca")
 }
 export const goToLogin = (history) => {
-    history.push("/entrar")
+    history.push("/login")
 }
 export const goToSignUp = (history) => {
     history.push("/cadastrar")

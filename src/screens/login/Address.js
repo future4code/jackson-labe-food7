@@ -1,41 +1,85 @@
-import React from 'react';
-import {PageContainer, Header, BackButton, Title, Text, InputContainer, Input, ButtonContainer, Button} from './AddressStyled'
-import back from '../../img/imgSignup/back.png'
-
-
+import React, { useEffect } from 'react';
+import {PageContainer, Title, Text, InputContainer, Input, ButtonContainer, Button} from './AddressStyled'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom';
+import useForm from '../../hooks/useForm';
 
 const Address = () => {
-    return (
+    
+  const history = useHistory()
+  const { form, onChange, resetState } = useForm({
+    street:"",
+    number:"",
+    neighbourhood:"",
+    city:"",
+    state:"",
+    complement:""
+  })
+
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem("token")
+
+  //   if (token) {
+  //     history.push("/home")
+  //   }
+  // }, [history])
+
+  const handleInputChange = (event) =>{
+    const { name, value } = event.target
+    onChange(name, value)
+  } 
+
+  const handleSubmittion = (event) =>{
+    event.preventDefault()
+    resetState()
+    handleAddress()
+  }
+
+  
+  const handleAddress = () => {
+    const token = window.localStorage.getItem("token")
+      axios
+        .put("https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/address", form, {headers:{
+          auth: token
+        }}).then(response => {
+          history.push("/home")
+          localStorage.setItem("token", response.data.token)
+          console.log(response)
+        }).catch(error => {
+          console.log(error)
+        })
+  }
+  
+  return (
       <PageContainer>
-          <Header>
-          <BackButton><img src={back}/></BackButton>
-        </Header>
         <Title>
           <Text>Meu endereço</Text>
         </Title>
-        <InputContainer>
-          <Input placeholder="Logradouro"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder="Número" type="number"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder="Complemento"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder="Bairro"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder="Cidade"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder="Estado"/>
-        </InputContainer>
-        <ButtonContainer>
-          <Button>
-            <Text>Salvar</Text>
-          </Button>
-        </ButtonContainer>
+        <form onSubmit={handleSubmittion} autoComplete="off">
+         <InputContainer>
+           <Input name="street" value={form.street} onChange={handleInputChange} required placeholder="Logradouro"/>
+         </InputContainer>
+         <InputContainer>
+           <Input name="number" value={form.number} onChange={handleInputChange} required placeholder="Número" type="number"/>
+         </InputContainer>
+         <InputContainer>
+           <Input name="complement" value={form.complement} onChange={handleInputChange}  placeholder="Complemento"/>
+         </InputContainer>
+         <InputContainer>
+           <Input name="neighbourhood" value={form.neighbourhood} onChange={handleInputChange} required placeholder="Bairro"/>
+         </InputContainer>
+         <InputContainer>
+           <Input name="city" value={form.city} onChange={handleInputChange} required placeholder="Cidade"/>
+         </InputContainer>
+         <InputContainer>
+           <Input name="state" value={form.state} onChange={handleInputChange} required placeholder="Estado"/>
+         </InputContainer>
+         <ButtonContainer>
+           <Button type="submit">
+             <Text>Salvar</Text>
+           </Button>
+         </ButtonContainer>
+        </form>
       </PageContainer>
     );
   }

@@ -10,6 +10,7 @@ import ProfileEdit from "../screens/profile/ProfileEdit"
 import ProfileEditAddress from "../screens/profile/ProfileEditAddress"
 import Login from "../screens/login/Login"
 import React from 'react';
+import HomeScreen from "../screens/homeScreen/HomeScreen"
 
 function Router() {
     return (
@@ -24,8 +25,12 @@ function Router() {
             <Busca/>
           </Route>
 
-          <Route exact path={['/', '/entrar']}>
+          <Route exact path='/login'>
             <Login/>
+          </Route>
+
+          <Route exact path='/'>
+            <HomeScreen/>
           </Route>
 
           <Route exact path='/cadastrar'>
