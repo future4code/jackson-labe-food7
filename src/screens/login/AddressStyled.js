@@ -6,7 +6,6 @@ export const PageContainer = styled.div`
   flex-direction:column;
   width: 360px;
   height: 640px;
-  background-color:lightsteelblue; 
   align-items: center;
 `
 
@@ -54,11 +53,7 @@ export const Button = styled.button`
   background-color: #5cb646;
   border: none;
 `
-export const Header = styled.header`
-  width: 360px;
-  height: 64px;
-  border-bottom:1px solid grey;
-`
+
 export const BackButton = styled.button`
   display:flex;
   width: 23px;

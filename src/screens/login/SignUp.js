@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo1x from '../../img/imgLogin/logo1x.png'
 import { useHistory } from 'react-router-dom';
-import back from '../../img/imgSignup/back.png'
-import {PageContainer,Logo, Header, BackButton, Title, Text, InputContainer, Input, ButtonContainer, Button} from './SignUpStyled'
+import {PageContainer, Logo, Title, Text, InputContainer, Input, ButtonContainer, Button} from './SignUpStyled'
+import useForm from '../../hooks/useForm';
+import axios from 'axios';
 
 
 
@@ -10,39 +11,72 @@ import {PageContainer,Logo, Header, BackButton, Title, Text, InputContainer, Inp
 const SignUp = () => {
   
   const history = useHistory()
-  
-  
-  
+  const { form, onChange, resetState } = useForm({
+    name:"",
+    email:"",
+    cpf:"",
+    password:""
+  })
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("token")
+
+    if (token) {
+      history.push("/home")
+    }
+  }, [history])
+
+  const handleInputChange = (event) =>{
+    const { name, value } = event.target
+    onChange(name, value)
+  } 
+
+  const handleSubmittion = (event) =>{
+    event.preventDefault()
+    handleSignUp()
+    resetState()
+  }
+
+  const handleSignUp = () => {
+    axios
+      .post("https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/signup", form)
+      .then(response => {
+        localStorage.setItem("token", response.data.token)
+        history.push("/cadastrar/endereco")
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
+  }
   
   return (
       <PageContainer>
-        <Header>
-          <BackButton><img src={back}/></BackButton>
-        </Header>
           <Logo src={logo1x} />
         <Title>
           <Text>Cadastrar</Text>
         </Title>
-        <InputContainer>
-          <Input placeholder=" Nome"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder=" Email"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder=" CPF" type="number"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder=" Senha" type="password"/>
-        </InputContainer>
-        <InputContainer>
-          <Input placeholder=" Confirmar senha" type="password"/>
-        </InputContainer>
-        <ButtonContainer>
-          <Button>
-            <Text>Criar</Text>
-          </Button>
-        </ButtonContainer>
+        <form onSubmit={handleSubmittion} autoComplete="off">
+          <InputContainer>
+            <Input  name="name" value={form.name} onChange={handleInputChange} required  placeholder=" Nome"/>
+          </InputContainer>
+          <InputContainer>
+           <Input  name="email" value={form.email} onChange={handleInputChange} required placeholder=" Email"/>
+         </InputContainer>
+         <InputContainer>
+            <Input  name="cpf" value={form.cpf} onChange={handleInputChange} required placeholder=" CPF" />
+         </InputContainer>
+         <InputContainer>
+            <Input  name="password" value={form.password}  onChange={handleInputChange} required placeholder=" Senha" type="password"/>
+          </InputContainer>
+         {/* <InputContainer>
+           <Input placeholder=" Confirmar senha" type="password"/>
+          </InputContainer> */}
+         <ButtonContainer>
+            <Button type="submit">
+             <Text>Criar</Text>
+            </Button>
+         </ButtonContainer>
+        </form>
       </PageContainer>
     );
   }

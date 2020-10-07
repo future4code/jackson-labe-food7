@@ -1,6 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import logo1x from '../../img/logo1x.png'
+import { goToLogin } from '../../Router/GoToPages';
 
 const ScreenPage = styled.div`
   display:flex;
@@ -19,6 +21,12 @@ const Logo = styled.img`
 `
 
 const  HomeScreen = () => {
+
+  const history = useHistory()
+
+  setTimeout(function(){
+    goToLogin(history)
+  }, 2000)
     return (
       <ScreenPage>
         <Logo src={logo1x} />
