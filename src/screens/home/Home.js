@@ -1,23 +1,30 @@
 
 import React, { useEffect, useState } from 'react'
-import { SearchImg, FilterBar, FilterButton, Header, PageBox, SearchBox, SearchIcon, SearchInput, Title, TitleIn } from './styled'
+import { SearchImg, FilterBar, FilterButton, Header, PageBox, SearchBox, SearchIcon, SearchInput, Title, TitleIn, BackButton } from './styled'
 import {searchSVG} from './img/search.svg'
 import searchPNG from './img/search.png'
 import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
+import { goToSearch } from '../../router/GoToPages'
+import { useHistory } from 'react-router-dom'
+import { SearchField } from './SearchField'
 
 
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVHSDRzV0g1U1Eza2pleFZDdzVEIiwibmFtZSI6IlJhcGhhZWwiLCJlbWFpbCI6InJhcGhhZWxAZW1haWwuY29tIiwiY3BmIjoiMTIzLjQ1Ni43ODktMDAiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUnVhIExhYmVuaWRhLCAyMDIwLCA4MyAtIExhcmdvIGRhIENhc2NhdGEiLCJpYXQiOjE2MDE5NTc2Nzl9.vvm1TIwY3S8Qij23ZrlFRtDXciep_jJgR7sKsTtTMpU'
-const baseHeader = {headers:{auth: token}}
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVHSDRzV0g1U1Eza2pleFZDdzVEIiwibmFtZSI6IlJhcGhhZWwiLCJlbWFpbCI6InJhcGhhZWxAZW1haWwuY29tIiwiY3BmIjoiMTIzLjQ1Ni43ODktMDAiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUnVhIExhYmVuaWRhLCAyMDIwLCA4MyAtIExhcmdvIGRhIENhc2NhdGEiLCJpYXQiOjE2MDE5NTc2Nzl9.vvm1TIwY3S8Qij23ZrlFRtDXciep_jJgR7sKsTtTMpU'
+// const baseHeader = {headers:{auth: token}}
 
 
 function Home() {
-    const {form, handleInputChange} = useForm({search:''})
+    const {form, onChange} = useForm({search:''})
     const [restaurants, setRestaurants] = useState([])
-
+    const [category, setCategory] = useState('')
+    const history = useHistory()
+    
     const getRestaurants = () => {
+      const token = localStorage.getItem('token')
+      const baseHeader = {headers:{auth: token}}
       axios.get(`${baseUrl}/restaurants`, baseHeader)
         .then(response=>{
           console.log(response.data.restaurants)
@@ -30,7 +37,7 @@ function Home() {
 
 
     useEffect(()=>{
-      storageToken()
+      // storageToken()
       getRestaurants()
     },[])
 
@@ -38,7 +45,9 @@ function Home() {
     const renderCards = () => {
       if (restaurants.length > 0) {
         return restaurants.map(rest=>{
-          return <RestaurantCard key={rest.id} restaurant={rest}></RestaurantCard>
+          if (rest.category === category || category === '') {
+            return <RestaurantCard key={rest.id} restaurant={rest}></RestaurantCard>
+          }
         })
       }
     }
@@ -46,7 +55,7 @@ function Home() {
 
     const renderCategories = () => {
       let newCats = []
-      
+
       let categories = 
         restaurants
           .map(restaurant => {
@@ -59,20 +68,27 @@ function Home() {
           .sort()
           .map((cat, index) => {
             // console.log(index)
-            if (index === 0) {
-              return <FilterButton key={index} active={true}> {cat} </FilterButton>
+            if (cat === category) {
+              return <FilterButton key={index} active={true} onClick={()=>onClickCategory(cat)} > {cat} </FilterButton>
             } else {
-              return <FilterButton key={index} > {cat} </FilterButton>
+              return <FilterButton key={index} onClick={()=>onClickCategory(cat)}> {cat} </FilterButton>
             }
             
           })
-  
+        
+        // categories.unshift(<FilterButton active={true} onClick={()=>onClickCategory('')} > Todas </FilterButton>)
         return categories
       }
 
-    const storageToken = () => {
-      localStorage.setItem('token', token)
-    }
+
+      const onClickCategory = (category) => {
+        // alert(category)
+        setCategory(category)
+      }
+
+    // const storageToken = () => {
+    //   localStorage.setItem('token', token)
+    // }
 
     const retauranteTeste = {
       id: "6",
@@ -89,27 +105,18 @@ function Home() {
       <PageBox>
 
         <Header>
+          <BackButton/>
           <Title>
             <TitleIn> FutureEats </TitleIn>
           </Title>
         </Header>
 
-        <SearchBox>
-          <SearchIcon>
-            {/*<SearchImg src={searchPNG} />*/}
-            <img  src={searchPNG}/>
-          </SearchIcon>
-          <SearchInput
-            placeholder='Restaurante'
-            name={'search'}
-            onChange={handleInputChange}
-            value={form.search}
-            type='text'
-          />
-        </SearchBox>
+        <SearchField history={history} />
 
         <FilterBar> {renderCategories()} </FilterBar>
+
         {renderCards()}
+        
       </PageBox>
     )
   }

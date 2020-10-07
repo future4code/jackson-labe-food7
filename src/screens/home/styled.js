@@ -8,7 +8,7 @@ export const PageBox = styled.div`
     align-items: center;
 
     /* width: 360px; */
-    width: 100vw;
+    width: 100%;
     /* height: 640px; */
 `
 
@@ -18,25 +18,42 @@ export const Header = styled.header`
     width: 100%;
     /* height: 44px; */
     height: 64px;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: stretch; */
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     padding: 20px 0 0 0;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background-color: #ffffff;
+    /* background-color: lightgreen; */
     margin-bottom: 8px;
+
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+`
+
+export const BackButton = styled.span`
+    /* background-color: lightblue; */
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    :hover{background-color: rgb(245,245,245);}
 `
 
 export const Title = styled.div`
+    /* background-color: lightcoral; */
     box-sizing: border-box;
-    width: 175px;
+    width: 100%;
     height: 100%;
     /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
 `
 
 export const TitleIn = styled.span`
@@ -98,13 +115,12 @@ export const FilterBar = styled.div`
     padding: 12px;
 
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: flex-start;
     align-items: center;
     overflow: auto;
     -webkit-scrollbar{display: none;}
     -ms-overflow-style: none;
     scrollbar-width: none;
-    /* box-shadow: inset -12px 0 6px -7px rgb(255,255,255); */
 `
 
 export const FilterButton = styled.button`
@@ -134,6 +150,14 @@ export const FilterButton = styled.button`
     :active{background-color: rgb(240,240,240);}
 `
 
+export const MsgBar = styled.div`
+    box-sizing: border-box;
+    width: 360px;
+    padding: 12px;
+    display: grid;
+    place-items: center;
+`
+
 export const RestRow = styled.div`
     box-sizing: border-box;
     width: 360px;
@@ -151,6 +175,9 @@ export const RestCard = styled.div`
     border-radius: 8px;
     border: solid 1px #b8b8b8;
     text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+    :hover{box-shadow: -1px 2px 3px rgb(200,200,200);}
 `
 
 export const RestCardImg = styled.img`
