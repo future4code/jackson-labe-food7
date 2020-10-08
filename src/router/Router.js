@@ -3,7 +3,7 @@ import Home from '../screens/home/Home'
 import SignUp from "../screens/login/SignUp"
 import Busca from "../screens/home/Busca"
 import Address from "../screens/login/Address"
-import RestaurantPage from "../screens/restaurant/RestaurantPage"
+import Restaurant from "../screens/restaurant/RestaurantPage"
 import Cart from "../screens/cart/Cart"
 import Profile from "../screens/profile/Profile"
 import ProfileEdit from "../screens/profile/ProfileEdit"
@@ -11,6 +11,7 @@ import ProfileEditAddress from "../screens/profile/ProfileEditAddress"
 import Login from "../screens/login/Login"
 import React from 'react';
 import HomeScreen from "../screens/homeScreen/HomeScreen"
+import Footer from "../components/Footer/Footer"
 
 function Router() {
     return (
@@ -19,6 +20,7 @@ function Router() {
           {/*páginas relacionadas a HOME*/} 
           <Route exact path='/home'>
             <Home/>
+            <Footer/>
           </Route>
           
           <Route exact path='/home/busca'>
@@ -42,15 +44,17 @@ function Router() {
           </Route>
 
           <Route exact path='/restaurante/:id'>
-            <RestaurantPage/>
+            <Restaurant/>
           </Route>
 
           <Route exact path='/carrinho'>
             <Cart/>
+            <Footer/>
           </Route>
 
           <Route exact path='/perfil'>
-            <Profile/>
+            <Profile/>            
+            <Footer/>
           </Route>
 
           <Route exact path='/perfil/editar'>

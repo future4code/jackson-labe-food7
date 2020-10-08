@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import logo1x from '../../img/logo1x.png'
-import { goToLogin } from '../../router/GoToPages';
+import { goToLogin } from '../../Router/GoToPages';
 
 const ScreenPage = styled.div`
   display:flex;
