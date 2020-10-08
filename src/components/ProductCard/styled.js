@@ -102,8 +102,6 @@ export const QuantityButton =  styled.button`
     right: -1px;
 
     visibility: ${props => props.visibility};
-
-    /* o display do botão deve ser alterado de acordo com a existencia de pedido */
 `
 
 export const AddButton =  styled.button`

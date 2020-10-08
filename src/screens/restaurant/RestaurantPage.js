@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard'
-import { Container, RestaurantContainer, ImageContainer, Image, Name, Text, Info, ProductContainer, SectionTitle } from './styled';
+import { Container, RestaurantContainer, ImageContainer, Image, Name, Text, Info, ProductContainer, SectionTitle, QuantityPage, QuantityContainer, QuantityText, QuantitySelect, QuantityButton } from './styled';
 import axios from 'axios';
 import { baseUrl } from '../../constants/axiosConstants'
 import { useParams } from 'react-router-dom';
@@ -15,9 +15,8 @@ const RestaurantPage = () => {
   const [ restaurant, setRestaurant ] = useState({})
   const [ menuProducts, setMenuProducts ] = useState([])
   
-  const [categories, setCategories] = useState([]);
-
-  
+  const [categories, setCategories] = useState([]);  
+  const [ quantity, setQuantity ] = useState(false)
 
   const getDetails = () => {       
     axios.get(`${baseUrl}/restaurants/${pathParams.id}`, headers)
@@ -58,12 +57,41 @@ const RestaurantPage = () => {
     
   }, [menuProducts]);
 
-  
+  const renderQuantityPage = () => {
+    if (quantity) {
+      return (
+        <QuantityPage>
+          <QuantityContainer>
+            <QuantityText> Selecione a quantidade desejada </QuantityText>
+            <QuantitySelect>
+              <option value={1} > 1 </option>
+              <option value={2} > 2 </option>
+              <option value={3} > 3 </option>
+              <option value={4} > 4 </option>
+              <option value={5} > 5 </option>
+              <option value={6} > 6 </option>
+              <option value={7} > 7 </option>
+              <option value={8} > 8 </option>
+              <option value={9} > 9 </option>
+              <option value={10} > 10 </option>
+            </QuantitySelect>
+            <QuantityButton>
+              ADICIONAR AO CARRINHO
+            </QuantityButton>
+          </QuantityContainer>
+      </QuantityPage>
+      )
+      
+    }
+  }
+
+  const handleQuantity = () => {
+    setQuantity(true)
+  }
 
   console.log(restaurant)
   console.log(menuProducts)
   console.log(categories)
-
 
   return (
     <Container>
@@ -93,15 +121,21 @@ const RestaurantPage = () => {
                   <ProductCard 
                     key={product.id}
                     restaurant={product}
+                    setQuantity={handleQuantity}
                   />
                 )
               }
 
             })}
 
+      
+
           </ProductContainer>
         )
       })}
+
+      {renderQuantityPage()}
+
 
     </Container>
 

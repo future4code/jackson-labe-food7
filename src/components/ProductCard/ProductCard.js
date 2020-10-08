@@ -10,8 +10,8 @@ const ProductCard = (props) => {
 
     const handleNameButton = buttonName ? "Adicionar" : "Remover"
     const handleColorButton = buttonName ? "#5cb646" : "#e02020";
-
     const handleVisibility = visibility ? "visible" : "hidden";
+
 
     const handlePrice = () => {
         if(price % 1 === 0) {
@@ -34,6 +34,7 @@ const ProductCard = (props) => {
         if (buttonName) {
             setButtonName(false)
             setVisibility(true)
+            props.setQuantity()
         } else {
             setButtonName(true)
             setVisibility(false)
