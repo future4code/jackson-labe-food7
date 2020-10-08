@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FilterBar, FilterButton, Header, PageBox, Title, TitleIn, BackButton, Main } from './styled'
+import { FilterBar, FilterButton, Header, PageBox, Title, TitleIn, BackButton, Main, CardPopup } from './styled'
 import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
@@ -105,6 +105,7 @@ function Home() {
           {renderCards()}
           {/* <RestaurantCard restaurant={retauranteTeste}></RestaurantCard> */}
         </PageBox>
+        {/* <CardPopup/> */}
       </Main>
     )
   }

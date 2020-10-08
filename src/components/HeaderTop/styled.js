@@ -14,7 +14,7 @@ export const Header = styled.header`
     backdrop-filter: blur(10px);
     background-color: #ffffff;
     /* background-color: lightgreen; */
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 
     display: grid;
     grid-template-columns: 30px 1fr 30px;
@@ -47,7 +47,7 @@ export const Title = styled.div`
 
 export const TitleIn = styled.span`
     box-sizing: border-box;
-    width: 74px;
+    /* width: 74px; */
     height: 19px;
     font-family: Roboto;
     font-size: 16px;

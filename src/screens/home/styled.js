@@ -20,7 +20,7 @@ export const PageBox = styled.div`
     width: 100%;
     max-width: 750px;
     min-height: 100vh;
-    padding: 0 0 20px 0;
+    padding: 8px 0 20px 0;
 `
 
 export const SearchBox = styled.div`
@@ -164,5 +164,15 @@ export const LineSpan = styled.span`
     line-height: normal;
     letter-spacing: -0.39px;
     color: #b8b8b8;
+`
+
+
+export const CardPopup = styled.div`
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
 `
 
