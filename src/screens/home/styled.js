@@ -192,6 +192,7 @@ export const RestCardImg = styled.img`
 
 export const RestCardBottom = styled.div`
     padding: 12px 16px 16px 16px;
+    align-self: stretch;
 `
 
 export const RestCardName = styled.p`
