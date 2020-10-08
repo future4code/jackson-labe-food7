@@ -1,17 +1,17 @@
 
 import React, { useState, useEffect } from 'react'
-import { Header, Title, TitleIn, PageBox, BackButton, MsgBar, Main } from './styled'
+import { PageBox, MsgBar, Main } from './styled'
 import axios from 'axios'
 import RestaurantCard from './RestaurantCard'
 import { SearchField } from './SearchField'
 import { useHistory } from 'react-router-dom'
+import { HeaderTop } from '../../components/HeaderTop/HeaderTop'
 
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
 
 function Busca() {
   const [restaurants, setRestaurants] = useState([])
   const [searchString, setSearchString] = useState('')
-  const history = useHistory()
 
   const getRestaurants = () => {
     const token = localStorage.getItem('token')
@@ -53,15 +53,9 @@ function Busca() {
   },[])
 
   return (
-    <Main>
-      {/*HEADER Provisório */}
-      <Header>
-        <BackButton onClick={()=>history.goBack()} > {'<'} </BackButton>
-        <Title>
-          <TitleIn>Busca</TitleIn>
-        </Title>
-      </Header>
-      
+    <Main>     
+      <HeaderTop backButton={true} title={'Busca'}/>
+
       <PageBox>
         {/* input para busca */}
           <SearchField history={null} setSearchString={setSearchString} />

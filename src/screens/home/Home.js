@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { FilterBar, FilterButton, Header, PageBox, Title, TitleIn, BackButton, Main } from './styled'
+import { FilterBar, FilterButton, Header, PageBox, Title, TitleIn, BackButton, Main, CardPopup } from './styled'
 import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { SearchField } from './SearchField'
+import { HeaderTop } from '../../components/HeaderTop/HeaderTop'
 
 
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
@@ -97,18 +98,14 @@ function Home() {
 
     return (
       <Main>
-        <Header>
-          <BackButton/>
-          <Title>
-            <TitleIn> FutureEats </TitleIn>
-          </Title>
-        </Header>
+        <HeaderTop backButton={false} title={'FutureEats'} />
         <PageBox>
           <SearchField history={history} />
           <FilterBar> {renderCategories()} </FilterBar>
           {renderCards()}
           {/* <RestaurantCard restaurant={retauranteTeste}></RestaurantCard> */}
         </PageBox>
+        {/* <CardPopup/> */}
       </Main>
     )
   }
