@@ -1,13 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Line, RestRow, RestCard, RestCardImg, LineSpan, RestCardName, RestCardBottom, RestCardInfo } from './styled'
+import { useHistory } from 'react-router-dom'
+import { goToRestaurant } from '../../router/GoToPages'
+import { RestRow, RestCard, RestCardImg, LineSpan, RestCardName, RestCardBottom, RestCardInfo } from './styled'
 
 const RestaurantCard = (props) => {
-    const {address, category, deliveryTime, description, id, logoUrl, name, shipping} = props.restaurant
+    const {address, deliveryTime, id, logoUrl, name, shipping, /*category, description*/} = props.restaurant
+    const history = useHistory()
     // console.log(props.restaurant)
     return (
         <RestRow>
-            <RestCard>
+            <RestCard onClick={()=>goToRestaurant(history, id)}>
                 <RestCardImg src={`${logoUrl}`} ></RestCardImg>
                 <RestCardBottom>
                     <RestCardName> {`${name} ${address.split(' - ')[1]}`} </RestCardName>
