@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { goToRestaurant } from '../../Router/GoToPages'
+import { goToRestaurant } from '../../router/GoToPages'
 import { RestRow, RestCard, RestCardImg, LineSpan, RestCardName, RestCardBottom, RestCardInfo } from './styled'
 
 const RestaurantCard = (props) => {
