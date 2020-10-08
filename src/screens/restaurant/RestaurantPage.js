@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Restaurant() {
+function RestaurantPage() {
     return (
       <div className="App">
       </div>
     );
   }
   
-  export default Restaurant;
+  export default RestaurantPage;

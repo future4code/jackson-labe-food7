@@ -3,7 +3,7 @@ import Home from '../screens/home/Home'
 import SignUp from "../screens/login/SignUp"
 import Busca from "../screens/home/Busca"
 import Address from "../screens/login/Address"
-import Restaurant from "../screens/restaurant/Restaurant"
+import RestaurantPage from "../screens/restaurant/RestaurantPage"
 import Cart from "../screens/cart/Cart"
 import Profile from "../screens/profile/Profile"
 import ProfileEdit from "../screens/profile/ProfileEdit"
@@ -42,7 +42,7 @@ function Router() {
           </Route>
 
           <Route exact path='/restaurante/:id'>
-            <Restaurant/>
+            <RestaurantPage/>
           </Route>
 
           <Route exact path='/carrinho'>
