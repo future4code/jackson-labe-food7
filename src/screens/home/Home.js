@@ -1,12 +1,7 @@
-
 import React, { useEffect, useState } from 'react'
-import { SearchImg, FilterBar, FilterButton, Header, PageBox, SearchBox, SearchIcon, SearchInput, Title, TitleIn, BackButton } from './styled'
-import {searchSVG} from './img/search.svg'
-import searchPNG from './img/search.png'
+import { FilterBar, FilterButton, Header, PageBox, Title, TitleIn, BackButton, Main } from './styled'
 import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
-import useForm from '../../hooks/useForm'
-import { goToSearch } from '../../router/GoToPages'
 import { useHistory } from 'react-router-dom'
 import { SearchField } from './SearchField'
 
@@ -17,7 +12,6 @@ const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats
 
 
 function Home() {
-    const {form, onChange} = useForm({search:''})
     const [restaurants, setRestaurants] = useState([])
     const [category, setCategory] = useState('')
     const history = useHistory()
@@ -27,7 +21,7 @@ function Home() {
       const baseHeader = {headers:{auth: token}}
       axios.get(`${baseUrl}/restaurants`, baseHeader)
         .then(response=>{
-          console.log(response.data.restaurants)
+          // console.log(response.data.restaurants)
           setRestaurants(response.data.restaurants)
         })
         .catch(err=>{
@@ -46,7 +40,7 @@ function Home() {
       if (restaurants.length > 0) {
         return restaurants.map(rest=>{
           if (rest.category === category || category === '') {
-            return <RestaurantCard key={rest.id} restaurant={rest}></RestaurantCard>
+            return (<RestaurantCard key={rest.id} restaurant={rest}></RestaurantCard>)
           }
         })
       }
@@ -102,22 +96,20 @@ function Home() {
     }
 
     return (
-      <PageBox>
-
+      <Main>
         <Header>
           <BackButton/>
           <Title>
             <TitleIn> FutureEats </TitleIn>
           </Title>
         </Header>
-
-        <SearchField history={history} />
-
-        <FilterBar> {renderCategories()} </FilterBar>
-
-        {renderCards()}
-        
-      </PageBox>
+        <PageBox>
+          <SearchField history={history} />
+          <FilterBar> {renderCategories()} </FilterBar>
+          {renderCards()}
+          {/* <RestaurantCard restaurant={retauranteTeste}></RestaurantCard> */}
+        </PageBox>
+      </Main>
     )
   }
   

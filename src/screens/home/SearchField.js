@@ -23,7 +23,7 @@ export const SearchField = (props) => {
     return (
         <SearchBox onClick={onClickSearch} >
             <SearchIcon>
-                <img  src={searchPNG}/>
+                <img  src={searchPNG} alt={'lupa'}/>
             </SearchIcon>
 
             <SearchInput

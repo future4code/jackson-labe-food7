@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { Header, Title, TitleIn, SearchBox, SearchIcon, SearchInput, PageBox, FilterBar, BackButton, MsgBar } from './styled'
-import searchPNG from './img/search.png'
-import useForm from '../../hooks/useForm'
+import { Header, Title, TitleIn, PageBox, BackButton, MsgBar, Main } from './styled'
 import axios from 'axios'
 import RestaurantCard from './RestaurantCard'
 import { SearchField } from './SearchField'
@@ -55,23 +53,24 @@ function Busca() {
   },[])
 
   return (
-    <PageBox>
-
+    <Main>
       {/*HEADER Provisório */}
-        <Header>
-          <BackButton onClick={()=>history.goBack()} > {'<'} </BackButton>
-          <Title>
-            <TitleIn>Busca</TitleIn>
-          </Title>
-        </Header>
+      <Header>
+        <BackButton onClick={()=>history.goBack()} > {'<'} </BackButton>
+        <Title>
+          <TitleIn>Busca</TitleIn>
+        </Title>
+      </Header>
+      
+      <PageBox>
+        {/* input para busca */}
+          <SearchField history={null} setSearchString={setSearchString} />
 
-      {/* input para busca */}
-        <SearchField history={null} setSearchString={setSearchString} />
+        {/* função para renderizar os cards ou mensagens conforme a situação */}
+          {renderCards()}
 
-      {/* função para renderizar os cards ou mensagens conforme a situação */}
-        {renderCards()}
-
-    </PageBox>
+      </PageBox>
+    </Main>
   )
 }
   

@@ -1,15 +1,13 @@
 import styled from 'styled-components'
 
-
-export const PageBox = styled.div`
+export const Main = styled.main`
     box-sizing: border-box;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-
-    /* width: 360px; */
-    width: 100%;
-    /* height: 640px; */
+    padding: 0;
 `
 
 export const Header = styled.header`
@@ -18,9 +16,6 @@ export const Header = styled.header`
     width: 100%;
     /* height: 44px; */
     height: 64px;
-    /* display: flex;
-    justify-content: center;
-    align-items: stretch; */
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     padding: 20px 0 0 0;
     -webkit-backdrop-filter: blur(10px);
@@ -31,6 +26,8 @@ export const Header = styled.header`
 
     display: grid;
     grid-template-columns: 30px 1fr 30px;
+    /* position: fixed;
+    top: 0; */
 `
 
 export const BackButton = styled.span`
@@ -71,40 +68,49 @@ export const TitleIn = styled.span`
     color: #000000;
 `
 
+export const PageBox = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 360px; */
+    /* height: 640px; */
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    padding: 0 0 20px 0;
+`
+
 export const SearchBox = styled.div`
     box-sizing: border-box;
     width: 328px;
     height: 56px;
     border-radius: 4px;
     border: solid 1px #b8b8b8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0 0 17px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
     margin-bottom: 8px;
+    /* margin-top: 8px; */
 `
 
 export const SearchInput = styled.input`
     box-sizing: border-box;
     width: 100%;
     height: 99%;
-    border-radius: 2px;
+    border-radius: 0 4px 4px 0;
     border: none;
-    /* align-self: stretch; */
     padding: 0 0 0 15px;
-    /* background-color: blue; */
 `
 
 export const SearchIcon = styled.div`
     box-sizing: border-box;
-    z-index:10;
-    width: 24px;
-    height: 24px;
+    display: grid;
+    place-items: center;
 `
 
 export const SearchImg = styled.img`
-    width:100%;
-    height: 100%;
+    width: 24px;
+    height: 24px;
 `
 
 export const FilterBar = styled.div`
@@ -123,7 +129,7 @@ export const FilterBar = styled.div`
     scrollbar-width: none;
 `
 
-export const FilterButton = styled.button`
+export const FilterButton = styled.div`
     box-sizing: border-box;
     border: none;
     background-color: transparent;
@@ -137,17 +143,14 @@ export const FilterButton = styled.button`
     line-height: normal;
     letter-spacing: -0.39px;
     text-align: center;
-    /* color: #000000; */
     color: ${props=>props.active ? '#5cb646' : '#000000'} ;
-    /* :active{color: #5cb646;} */
-    /* border: 1px solid black; */
 
     display: grid;
     place-items: center;
     margin: 0 4px;
+    padding: 0 10px;
 
     cursor: pointer;
-    :active{background-color: rgb(240,240,240);}
 `
 
 export const MsgBar = styled.div`
@@ -164,8 +167,6 @@ export const RestRow = styled.div`
     /* height: 196px; */
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    /* border: 1px solid black; */
     margin-top: 8px;
 `
 
@@ -177,11 +178,14 @@ export const RestCard = styled.div`
     text-align: left;
     cursor: pointer;
     transition: 0.2s;
-    :hover{box-shadow: -1px 2px 3px rgb(200,200,200);}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export const RestCardImg = styled.img`
-    width: 328px;
+    /* width: 328px; */
+    width: 100%;
     /* height: 120px; */
     border-radius: 8px 8px 0 0;
 `
