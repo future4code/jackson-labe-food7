@@ -16,6 +16,7 @@ export const RestaurantContainer = styled.div`
     height: 250px;
    
     text-align: start;
+    padding-top: 20px;
 `
 
 export const ImageContainer = styled.div`
@@ -90,6 +91,7 @@ export const SectionTitle = styled.p`
     border-bottom: solid 1px black;
 `
 
+
 export const QuantityPage = styled.div`
     width: 100vw;
     height: 100%;
@@ -98,7 +100,7 @@ export const QuantityPage = styled.div`
     display: flex;
     justify-content: center;
     padding-top: calc(50vh - 108px);
-    position: absolute;
+    position: fixed;
     top: 0;
 `
 
