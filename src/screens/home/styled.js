@@ -20,7 +20,7 @@ export const PageBox = styled.div`
     width: 100%;
     max-width: 750px;
     min-height: 100vh;
-    padding: 8px 0 20px 0;
+    padding: 8px 0 69px 0;
 `
 
 export const SearchBox = styled.div`
