@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { HeaderTop } from '../../components/HeaderTop/HeaderTop';
+import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 import { AddressBox, AddressLine, EmptyCartMsg, Freight, Main, PageBox, SubTotal, PaymentTitle, PaymentRadio, PaymentRadioLabel, ConfirmButton, PageBoxSon } from './styled';
 import axios from 'axios'
-import { baseUrl } from '../../constants/axiosConstants';
+import { baseUrl } from '../../Constants/axiosConstants';
 
 function Cart(props) {
     console.log('Cart > props.cartProduct', props.cartProducts)

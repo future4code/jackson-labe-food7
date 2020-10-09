@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Router from './Router/Router';
-import Alert from './components/Alert/Alert'
+import Alert from './Components/Alert/Alert'
 
 function App() {
   return (

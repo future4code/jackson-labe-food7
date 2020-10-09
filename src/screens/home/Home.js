@@ -4,7 +4,7 @@ import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { SearchField } from './SearchField'
-import { HeaderTop } from '../../components/HeaderTop/HeaderTop'
+import { HeaderTop } from '../../Components/HeaderTop/HeaderTop'
 
 
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
