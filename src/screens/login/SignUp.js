@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import logo1x from '../../img/imgLogin/logo1x.png'
 import { useHistory } from 'react-router-dom';
 import {PageContainer, Logo, Title, Text, InputContainer, Input, ButtonContainer, Button} from './SignUpStyled'
-import useForm from '../../hooks/useForm';
+import useForm from '../../Hooks/useForm';
 import axios from 'axios';
 
 

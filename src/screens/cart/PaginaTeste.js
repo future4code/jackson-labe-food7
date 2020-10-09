@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
-import { goToCart } from '../../router/GoToPages'
+import { goToCart } from '../../Router/GoToPages'
 import { PaginaTesteCard } from './PaginaTesteCard'
 import { PTBox, PTPage } from './styled'
 
