@@ -6,8 +6,7 @@ import Alert from './components/Alert/Alert'
 function App() {
   return (
     <div className="App">
-    {/* <Router/> */}
-    <Alert/>
+    <Router/>
     </div>
   );
 }
