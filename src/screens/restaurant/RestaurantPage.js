@@ -4,7 +4,7 @@ import { Container, RestaurantContainer, ImageContainer, Image, Name, Text, Info
 import axios from 'axios';
 import { baseUrl } from '../../Constants/axiosConstants'
 import { useParams } from 'react-router-dom';
-import { HeaderTop } from '../../components/HeaderTop/HeaderTop';
+import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 
 
 const RestaurantPage = () => {

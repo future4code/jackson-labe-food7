@@ -7,9 +7,7 @@ import { goToSignUp } from '../../Router/GoToPages';
 import {PageContainer, Logo, Title, Text, InputContainer, Input, ButtonContainer, Button, ButtonOnClick} from './LoginStyled'
 
 
-
 const Login = () => {
-
   const history = useHistory()
   const {form, onChange, resetState}  = useForm({
     email:"",
