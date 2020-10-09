@@ -24,7 +24,7 @@ export const PageBox = styled.div`
     width: 100%;
     max-width: 750px;
     flex-grow: 1;
-    padding: 0 0 20px 0;
+    padding: 0 0 69px 0;
 `
 
 export const PageBoxSon = styled.div`
@@ -182,6 +182,7 @@ export const ConfirmButton = styled.div`
     display: grid;
     place-items: center;
     align-self: stretch;
+    cursor: pointer;
 
     font-family: Roboto;
     font-size: 16px;
@@ -197,3 +198,29 @@ export const ConfirmButton = styled.div`
     background-color: rgba(92, 182, 70, 0.5);
 `
 
+
+
+// PAGINA TESTE - CARD QTDE
+
+export const PTPage = styled.div`
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display:grid;
+    place-items: center;
+    background-color: rgba(0,0,0,0.5);
+`
+
+export const PTBox = styled.div`
+    min-width: 200px;
+    min-height: 300px;
+    border: 1px solid gray;
+    background-color: rgb(245,245,245);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+`
