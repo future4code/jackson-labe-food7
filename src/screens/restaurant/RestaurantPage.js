@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ProductCard from '../../components/ProductCard/ProductCard'
+import ProductCard from '../../Components/ProductCard/ProductCard'
 import { Container, RestaurantContainer, ImageContainer, Image, Name, Text, Info, ProductContainer, SectionTitle, QuantityPage, QuantityContainer, QuantityText, QuantitySelect, QuantityButton } from './styled';
 import axios from 'axios';
-import { baseUrl } from '../../constants/axiosConstants'
+import { baseUrl } from '../../Constants/axiosConstants'
 import { useParams } from 'react-router-dom';
 
 
