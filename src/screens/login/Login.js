@@ -26,7 +26,7 @@ const Login = () => {
   const handleInputChange = (event) =>{
     const { name, value } = event.target
     onChange(name, value)
-  } 
+  }
   
   const handleSubmittion = (event) =>{
     event.preventDefault()

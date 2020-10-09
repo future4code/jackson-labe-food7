@@ -9,8 +9,10 @@ const ScreenPage = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  width: 360px;
-  height: 640px;
+  /* width: 360px;
+  height: 640px; */
+  width: 100%;
+  min-height: 100vh;
   background-color:#000000;
   
 `

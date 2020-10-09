@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import {PageContainer, Logo, Title, Text, InputContainer, Input, ButtonContainer, Button} from './SignUpStyled'
 import useForm from '../../Hooks/useForm';
 import axios from 'axios';
+import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 
 
 
@@ -51,6 +52,7 @@ const SignUp = () => {
   
   return (
       <PageContainer>
+        <HeaderTop title={''} backButton={true} />
           <Logo src={logo1x} />
         <Title>
           <Text>Cadastrar</Text>

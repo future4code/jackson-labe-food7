@@ -3,6 +3,7 @@ import {PageContainer, Title, Text, InputContainer, Input, ButtonContainer, Butt
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../../Hooks/useForm';
+import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 
 const Address = () => {
     
@@ -44,6 +45,7 @@ const Address = () => {
   
   return (
       <PageContainer>
+        <HeaderTop title={''} backButton={true} />
         <Title>
           <Text>Meu endereço</Text>
         </Title>
