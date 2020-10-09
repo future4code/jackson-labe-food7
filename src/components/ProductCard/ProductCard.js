@@ -1,17 +1,34 @@
 import React, { useState } from 'react'
 import { Container, CardContainer, ImageContainer, ContantContainer, ProductDescription, ProductTitle, ProductValue, QuantityButton, AddButton } from './styled'
+import ConfirmQuantity from '../ConfirmQuantity/ConfirmQuantity'
 
 
 const ProductCard = (props) => {
     const { photoUrl, name, description, price  } = props.restaurant
 
-    const [ buttonName, setButtonName ] = useState(true)
-    const [ visibility, setVisibility ] = useState(false)
+    const [ selectedQuantity, setSelectedQuantity ] = useState("")
+    const [ quantityPage, setQuantityPage ] = useState(false)
 
-    const handleNameButton = buttonName ? "Adicionar" : "Remover"
-    const handleColorButton = buttonName ? "#5cb646" : "#e02020";
-    const handleVisibility = visibility ? "visible" : "hidden";
+    const handleOpenPage = () => {
+        setQuantityPage(true)
+    }
 
+    const handleClosePage = () => {
+        setQuantityPage(false)
+    }
+
+    const onChangeSelect = (event) => {
+        setSelectedQuantity(event.target.value)
+    }
+    
+    const onClickCartAdd = (event) => { 
+        event.preventDefault()
+        handleClosePage()
+    }
+
+    const removeValue = () => {
+        setSelectedQuantity("")
+    }
 
     const handlePrice = () => {
         if(price % 1 === 0) {
@@ -29,18 +46,19 @@ const ProductCard = (props) => {
         }
     }
 
-    const onClickAdd = () => {
-        
-        if (buttonName) {
-            setButtonName(false)
-            setVisibility(true)
-            props.setQuantity()
-        } else {
-            setButtonName(true)
-            setVisibility(false)
+    const renderConfirmQuantity = () => {
+        if (quantityPage) {
+            return (
+                <ConfirmQuantity
+                    selectQuantity={selectedQuantity}
+                    onChangeSelect={onChangeSelect}
+                    onClickCartAdd={onClickCartAdd}
+                />
+            )
         }
     }
 
+    console.log()
 
     return (
         <Container>
@@ -53,26 +71,33 @@ const ProductCard = (props) => {
                     <ProductDescription>
                         {description}
                     </ProductDescription>
-                    
-                    {/* PRICE */}
-                    {handlePrice()}
 
-                    <QuantityButton
-                        visibility={handleVisibility}                    
-                    >
-                        2
-                    </QuantityButton>
+                    {handlePrice()}
+            
+                    {selectedQuantity ?  <QuantityButton>{selectedQuantity}</QuantityButton> : <></>}
+
+                    {selectedQuantity ? 
                     <AddButton 
-                        onClick={onClickAdd}
-                        borderColor={handleColorButton}
-                        color={handleColorButton}
+                        onClick={removeValue}
+                        borderColor={"#e02020"}
+                        color={"#e02020"}
                     >
-                        {handleNameButton}
+                        Remover
                     </AddButton>
-                  
+                    : 
+                    <AddButton 
+                        onClick={handleOpenPage}
+                        borderColor={"#5cb646"}
+                        color={"#5cb646"}
+                    >
+                        Adicionar
+                    </AddButton>
+                    }                  
                 </ContantContainer>
             </CardContainer>
+            {renderConfirmQuantity()}
         </Container>
+
     )
 }
 
