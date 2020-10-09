@@ -1,16 +1,16 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import Home from '../screens/home/Home'
-import SignUp from "../screens/login/SignUp"
-import Busca from "../screens/home/Busca"
-import Address from "../screens/login/Address"
-import Restaurant from "../screens/restaurant/RestaurantPage"
-import Cart from "../screens/cart/Cart"
-import Profile from "../screens/profile/Profile"
-import ProfileEdit from "../screens/profile/ProfileEdit"
-import ProfileEditAddress from "../screens/profile/ProfileEditAddress"
-import Login from "../screens/login/Login"
+import Home from '../screens/Home/Home'
+import SignUp from "../screens/Login/SignUp"
+import Busca from "../screens/Home/Busca"
+import Address from "../screens/Login/Address"
+import Restaurant from "../screens/Restaurant/RestaurantPage"
+import Cart from "../screens/Cart/Cart"
+import Profile from "../screens/Profile/Profile"
+import ProfileEdit from "../screens/Profile/ProfileEdit"
+import ProfileEditAddress from "../screens/Profile/ProfileEditAddress"
+import Login from "../screens/Login/Login"
 import React from 'react';
-import HomeScreen from "../screens/homeScreen/HomeScreen"
+import HomeScreen from "../screens/HomeScreen/HomeScreen"
 import Footer from "../components/Footer/Footer"
 
 function Router() {

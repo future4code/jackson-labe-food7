@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import useForm from '../../hooks/useForm';
+import useForm from '../../Hooks/useForm';
 import logo1x from '../../img/imgLogin/logo1x.png';
 import { goToSignUp } from '../../Router/GoToPages';
 import {PageContainer, Logo, Title, Text, InputContainer, Input, ButtonContainer, Button, ButtonOnClick} from './LoginStyled'

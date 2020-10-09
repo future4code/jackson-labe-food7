@@ -1,7 +1,7 @@
 import React from 'react'
 import { SearchBox, SearchIcon, SearchInput } from './styled'
 import searchPNG from './img/search.png'
-import useForm from '../../hooks/useForm'
+import useForm from '../../Hooks/useForm'
 import { goToSearch } from '../../Router/GoToPages'
 
 
