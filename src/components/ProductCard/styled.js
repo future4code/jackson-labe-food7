@@ -10,7 +10,8 @@ export const Container = styled.div`
 `
 
 export const CardContainer = styled.div`
-    width: 328px;
+    /* width: 328px; */
+    width: 100%;
     height: 112px;
 
     border-radius: 8px;
