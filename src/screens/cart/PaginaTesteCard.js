@@ -1,5 +1,5 @@
 import React from 'react'
-import useForm from '../../hooks/useForm'
+import useForm from '../../Hooks/useForm'
 import { PTBox, PTPage } from './styled'
 
 export const PaginaTesteCard = (props) => {

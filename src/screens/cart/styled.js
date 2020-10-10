@@ -36,7 +36,7 @@ export const PageBoxSon = styled.div`
 `
 
 
-export const AddressBox = styled.div`
+export const UserAddressBox = styled.div`
     background-color: #eeeeee;
     box-sizing: border-box;
     display: flex;
@@ -49,7 +49,7 @@ export const AddressBox = styled.div`
     margin-top: 2px;
 `
 
-export const AddressLine = styled.p`
+export const UserAddressLine = styled.p`
     /* background-color: lightgreen; */
     margin: 0;
     :first-child{
@@ -64,6 +64,37 @@ export const AddressLine = styled.p`
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.39px;
+`
+
+export const RestAddressBox = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 16px 0 16px;
+    height: 76px;
+    /* width: 100%; */
+    align-self: stretch;
+    margin-bottom: 8px;
+`
+
+export const RestAddressLine = styled.p`
+    margin: 0;
+    margin-bottom: 8px;
+    :first-child{color: #5cb646;}
+    color: #b8b8b8;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+`
+
+export const CardBox = styled.div`
+    align-self: stretch;
+    padding: 16px;
 `
 
 export const EmptyCartMsg = styled.div`
@@ -177,7 +208,7 @@ export const PaymentRadio = styled.input`
 `
 
 export const ConfirmButton = styled.div`
-    margin: 0 16px;
+    margin: 30px 16px 0 16px;
     padding: 12px;
     display: grid;
     place-items: center;
