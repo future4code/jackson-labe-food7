@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 import axios from 'axios';
 import { baseUrl } from '../../Constants/axiosConstants';
@@ -11,15 +11,11 @@ const ProfileEdit = () => {
     const history = useHistory()
     const token = localStorage.getItem("token")
     const headers = { headers: { auth: token } }
-    // const [ profileInfo, setProfileInfo ] = useState({})
 
     const getProfile = () => {
       axios.get(`${baseUrl}/profile`, headers)
       .then((response) => {
         console.log(response)
-        // setProfileInfo(response.data.user)
-        // handleInputChange({target: {name: "name", value: profileInfo.name}})
-
         localStorage.setItem("name", response.data.user.name)
         localStorage.setItem("email", response.data.user.email)
         localStorage.setItem("cpf", response.data.user.cpf)
@@ -27,9 +23,7 @@ const ProfileEdit = () => {
       .catch((error) => {
         console.log(error)
       })
-    }
-
-    
+    }   
 
     const {form, onChange}  = useForm({
         name: localStorage.getItem("name"),
@@ -43,7 +37,6 @@ const ProfileEdit = () => {
         onChange(name, value)
     }
       
-
     const updateProfile = () => {
         const body = {
             name: `${form.name}`,
@@ -62,7 +55,6 @@ const ProfileEdit = () => {
             alert("Erro ao atualizar dados. Tente novamente!")
         })
     }
-
     
     const handleSubmittion = (event) =>{
         event.preventDefault()
@@ -70,8 +62,7 @@ const ProfileEdit = () => {
     }
 
     useEffect(() => {
-        getProfile()
-        // handleInputChange({target: {name: "name", value: profileInfo.name}})       
+        getProfile()      
     }, [])
 
     return (
