@@ -5,9 +5,10 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { SearchField } from './SearchField'
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop'
+import { baseUrl } from '../../Constants/axiosConstants'
 
 
-const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
+// const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVHSDRzV0g1U1Eza2pleFZDdzVEIiwibmFtZSI6IlJhcGhhZWwiLCJlbWFpbCI6InJhcGhhZWxAZW1haWwuY29tIiwiY3BmIjoiMTIzLjQ1Ni43ODktMDAiLCJoYXNBZGRyZXNzIjp0cnVlLCJhZGRyZXNzIjoiUnVhIExhYmVuaWRhLCAyMDIwLCA4MyAtIExhcmdvIGRhIENhc2NhdGEiLCJpYXQiOjE2MDE5NTc2Nzl9.vvm1TIwY3S8Qij23ZrlFRtDXciep_jJgR7sKsTtTMpU'
 // const baseHeader = {headers:{auth: token}}
 
