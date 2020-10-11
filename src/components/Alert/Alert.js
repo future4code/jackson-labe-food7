@@ -11,9 +11,7 @@ const Alert = (props) => {
                 </ContainerLogo>
                 <ContainerText>
                     <TextOne>Pedido em andamento</TextOne>
-                    {/* <TextTwo>Bullguer Vila madalena</TextTwo> */}
                     <TextTwo> {props.activeOrder.restaurantName} </TextTwo>
-                    {/* <TextThree>SUBTOTAL R$67,00</TextThree> */}
                     <TextThree> {`SUBTOTAL R$${props.activeOrder.totalPrice.toFixed(2).replace('.', ',')}`} </TextThree>
                 </ContainerText>
             </Container>

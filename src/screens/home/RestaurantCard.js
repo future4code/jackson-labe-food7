@@ -4,9 +4,8 @@ import { goToRestaurant } from '../../Router/GoToPages'
 import { RestRow, RestCard, RestCardImg, LineSpan, RestCardName, RestCardBottom, RestCardInfo } from './styled'
 
 const RestaurantCard = (props) => {
-    const {address, deliveryTime, id, logoUrl, name, shipping, /*category, description*/} = props.restaurant
+    const {address, deliveryTime, id, logoUrl, name, shipping} = props.restaurant
     const history = useHistory()
-    // console.log(props.restaurant)
     return (
         <RestRow>
             <RestCard onClick={()=>goToRestaurant(history, id)}>

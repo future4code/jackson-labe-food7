@@ -4,7 +4,6 @@ import { PageBox, MsgBar, Main } from './styled'
 import axios from 'axios'
 import RestaurantCard from './RestaurantCard'
 import { SearchField } from './SearchField'
-import { useHistory } from 'react-router-dom'
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop'
 import { useProtectPage } from '../../Hooks/useProtectPage'
 
@@ -20,7 +19,6 @@ function Busca() {
     const baseHeader = {headers:{auth: token}}
     axios.get(`${baseUrl}/restaurants`, baseHeader)
       .then(response=>{
-        // console.log(response.data.restaurants)
         setRestaurants(response.data.restaurants)
       })
       .catch(err=>{
@@ -59,12 +57,8 @@ function Busca() {
       <HeaderTop backButton={true} title={'Busca'}/>
 
       <PageBox>
-        {/* input para busca */}
           <SearchField history={null} setSearchString={setSearchString} />
-
-        {/* função para renderizar os cards ou mensagens conforme a situação */}
           {renderCards()}
-
       </PageBox>
     </Main>
   )

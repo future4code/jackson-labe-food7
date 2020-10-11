@@ -8,18 +8,9 @@ import { useHistory } from 'react-router-dom';
 import { goToHomePage } from '../../Router/GoToPages';
 import { useProtectPage } from '../../Hooks/useProtectPage';
 
-import useForm from '../../Hooks/useForm'
-
 function Cart(props) {
     useProtectPage()
-    // console.log('Cart > props.orderData', props.orderData)
     const history = useHistory()
-
-    // const {form, onChange} = useForm({inputTeste:''})
-    // const handleInputChange = (event) =>{
-    //   const { name, value } = event.target
-    //   onChange(name, value)
-    // } 
 
     const restId = props.orderData.restaurant.id || null
     const name =  props.orderData.restaurant.name || null
@@ -39,7 +30,6 @@ function Cart(props) {
         })
       }
         totalPrice += freightPrice
-        // console.log('totalPrice', totalPrice)
         return totalPrice
     }
 
@@ -49,7 +39,6 @@ function Cart(props) {
       const baseHeader = {headers:{auth: token}}
       axios.get(`${baseUrl}/profile/address`, baseHeader)
         .then(response=>{
-          // console.log('Cart > getFullAddress', response.data.address)
           setUserAddress(`${response.data.address.street}, ${response.data.address.number}`)
         })
         .catch(err=>{
@@ -68,12 +57,8 @@ function Cart(props) {
           const body = {products: products, paymentMethod: paymentMethod}
           const token = localStorage.getItem('token')
           const baseHeader = {headers:{auth: token}}
-          
-          // console.log(`${baseUrl}/restaurants/${restId}/order`, body, baseHeader)
-
           axios.post(`${baseUrl}/restaurants/${restId}/order`, body, baseHeader)
             .then(response=>{
-              // console.log('placeOrder: ', response)
               props.setOrderData({restaurant: {}, products:[]})
               goToHomePage(history)
             })
@@ -85,25 +70,13 @@ function Cart(props) {
     }
 
     const onChangeRadioButton = (event) => {
-      // console.log('onChangeRadioButton', event.target.value)
       setPaymentMethod(event.target.value)
     }
 
     useEffect(()=>{
       getFullAddress()
-      // handleInputChange({target:{name: 'inputTeste', value: 'beija flor'}})
     },[])
 
-
-    // let altProd = {
-    //   category: "Salgado",
-    //   description: "Esfiha deliciosa, receita secreta do Habibs.",
-    //   id: "5omTFSOBYiTqeiDwhiBx",
-    //   name: "Bibsfiha queijo",
-    //   orderQtde: "3",
-    //   photoUrl: "https://static-images.ifood.com.br/image/upload/f_auto,t_hig…c38aa8-b094-413d-9a80-ddc256bfcc78/201907031403_66194479.jpg",
-    //   price: 1,
-    // }
 
     const renderRestAddress = () => {
       return (props.orderData.restaurant.name && props.orderData.products.length > 0) ?
@@ -129,9 +102,6 @@ function Cart(props) {
             />
           )
         })
-        // <ProductCard 
-        //   product={altProd}
-        // />
     }
 
     return (
@@ -144,18 +114,14 @@ function Cart(props) {
               <UserAddressLine>{userAddress}</UserAddressLine>
             </UserAddressBox>
             
-            {/* <input type="text" name='inputTeste' value={form.inputTeste} onChange={handleInputChange} /> */}
-
             {renderRestAddress()}
 
             <CardBox>
               {renderCards()}
             </CardBox>
             
-            
             <Freight> <span> {`Frete R$${freightPrice.toFixed(2).replace('.', ',')}`} </span> </Freight>
 
-            {/* <SubTotal> <span>SUBTOTAL</span> <span> {`R$${subTotalPrice.toFixed(2).replace('.', ',')}`} </span> </SubTotal> */}
             <SubTotal> <span>SUBTOTAL</span> <span> {`R$${calcTotalPrice().toFixed(2).replace('.', ',')}`} </span> </SubTotal>
 
             <PaymentTitle> Forma de pagamento </PaymentTitle>
