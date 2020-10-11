@@ -7,9 +7,17 @@ import ProductCard from '../../Components/ProductCard/ProductCard'
 import { useHistory } from 'react-router-dom';
 import { goToHomePage } from '../../Router/GoToPages';
 
+import useForm from '../../Hooks/useForm'
+
 function Cart(props) {
     // console.log('Cart > props.orderData', props.orderData)
     const history = useHistory()
+
+    // const {form, onChange} = useForm({inputTeste:''})
+    // const handleInputChange = (event) =>{
+    //   const { name, value } = event.target
+    //   onChange(name, value)
+    // } 
 
     const restId = props.orderData.restaurant.id || null
     const name =  props.orderData.restaurant.name || null
@@ -81,18 +89,19 @@ function Cart(props) {
 
     useEffect(()=>{
       getFullAddress()
+      // handleInputChange({target:{name: 'inputTeste', value: 'beija flor'}})
     },[])
 
 
-    let altProd = {
-      category: "Salgado",
-      description: "Esfiha deliciosa, receita secreta do Habibs.",
-      id: "5omTFSOBYiTqeiDwhiBx",
-      name: "Bibsfiha queijo",
-      orderQtde: "3",
-      photoUrl: "https://static-images.ifood.com.br/image/upload/f_auto,t_hig…c38aa8-b094-413d-9a80-ddc256bfcc78/201907031403_66194479.jpg",
-      price: 1,
-    }
+    // let altProd = {
+    //   category: "Salgado",
+    //   description: "Esfiha deliciosa, receita secreta do Habibs.",
+    //   id: "5omTFSOBYiTqeiDwhiBx",
+    //   name: "Bibsfiha queijo",
+    //   orderQtde: "3",
+    //   photoUrl: "https://static-images.ifood.com.br/image/upload/f_auto,t_hig…c38aa8-b094-413d-9a80-ddc256bfcc78/201907031403_66194479.jpg",
+    //   price: 1,
+    // }
 
     const renderRestAddress = () => {
       return (props.orderData.restaurant.name && props.orderData.products.length > 0) ?
@@ -125,8 +134,6 @@ function Cart(props) {
 
     return (
       <Main>
-        {/* {console.log('calcTotalPrice', calcTotalPrice)} */}
-        {/* {console.log('renderCards: ', renderCards) } */}
         <HeaderTop title={'Meu Carrinho'} backButton={false} />
         <PageBox>
           <PageBoxSon>
@@ -135,6 +142,8 @@ function Cart(props) {
               <UserAddressLine>{userAddress}</UserAddressLine>
             </UserAddressBox>
             
+            {/* <input type="text" name='inputTeste' value={form.inputTeste} onChange={handleInputChange} /> */}
+
             {renderRestAddress()}
 
             <CardBox>

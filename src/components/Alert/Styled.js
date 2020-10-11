@@ -1,9 +1,15 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    width: 360px;
+    /* width: 360px; */
+    width: 100%;
     height: 118px;
-    background-color: #5cb646;
+    /* background-color: #5cb646; */
+    background-color: rgba(92, 182, 70, 0.97);
+    position: fixed;
+    bottom: 49px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
 `
 export const TextOne = styled.text`
     width: 256px;
@@ -16,6 +22,8 @@ export const TextOne = styled.text`
     line-height: normal;
     letter-spacing: -0.39px;
     color: #ffffff;
+    text-align: left;
+    /* background-color: lightcyan; */
 `
 export const TextTwo = styled.text`
     width: 256px;
@@ -28,6 +36,9 @@ export const TextTwo = styled.text`
     line-height: normal;
     letter-spacing: -0.39px;
     color: #000000;
+    text-align: left;
+    margin-top: 8px;
+    /* background-color: lightcoral; */
 `
 export const TextThree = styled.text`
     width: 256px;
@@ -40,17 +51,25 @@ export const TextThree = styled.text`
     line-height: normal;
     letter-spacing: -0.39px;
     color: #000000;
+    text-align: left;
+    margin-top: 8px;
+    /* background-color: lightblue; */
 `
 
 export const ContainerLogo = styled.div`
     display:grid;
-    padding-top:40px;
-    padding-left:30px;
+    place-items: center;
+    /* padding-top:40px;
+    padding-left:30px; */
+    /* background-color: lightgray; */
 `
 export const ContainerText = styled.div`
-    display:grid;
+    /* display:grid;
     margin-top:-45px;
     padding-left: 35px;
-    gap:5px;
-
+    gap:5px; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 `
