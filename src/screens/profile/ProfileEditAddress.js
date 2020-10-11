@@ -1,9 +1,11 @@
 import React from 'react';
-function ProfileEditAddress() {
+
+const ProfileEditAddress = () => {
     return (
         <div className="App">
+            EDIÇÃO ENDEREÇO
         </div>
     );
-    }
+}
 
 export default ProfileEditAddress;

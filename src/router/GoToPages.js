@@ -22,6 +22,13 @@ export const goToCart = (history) => {
 export const goToProfile = (history) => {
     history.push("/perfil")
 }
+
+// alterei nome e caminho: rederente a página de edição dos dados pessoais
 export const goToProfileEdit = (history) => {
+    history.push("/perfil/editar/dados-pessoais")
+}
+
+// adicionei uma página referente a edição do endereço
+export const goToProfileEditAddress = (history) => {
     history.push("/perfil/editar/endereco")
 }

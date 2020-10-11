@@ -9,6 +9,7 @@ import Profile from "../Screens/Profile/Profile"
 import ProfileEdit from "../Screens/Profile/ProfileEdit"
 import ProfileEditAddress from "../Screens/Profile/ProfileEditAddress"
 import Login from "../Screens/Login/Login"
+// import React from './node_modules/react';
 import React from 'react';
 import HomeScreen from "../Screens/HomeScreen/HomeScreen"
 import Footer from "../Components/Footer/Footer"
@@ -58,16 +59,24 @@ function Router(props) {
             <Footer/>
           </Route>
 
-          <Route exact path='/perfil/editar'>
+          {/* Alterei rota para a página de edição dos dados pessoais */}
+          <Route exact path='/perfil/editar/dados-pessoais'>
             <ProfileEdit/>
           </Route>
-
+          
           <Route exact path='/perfil/editar/endereco'>
             <ProfileEditAddress/>
           </Route>
+
           <Route exact path='/paginateste'>
             <PaginaTeste/>
           </Route>
+
+          {/* Adicionei rota para a página de erro */}
+          <Route>
+            <div>ERRO 404 - Página não encontrada</div>
+          </Route>
+
         </Switch>
       </BrowserRouter>
     )
