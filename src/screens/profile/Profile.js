@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {ContainerMain, MeuPerfil, Linha, AlinharEdit, Cadastro, Divisoria, ContainerHistorico, Main} from "./styled"
+import {ContainerInfo, Div, Cadastro, CardContainer, Title, TextOrder, TextValue, ContainerPage, History, Image, TextInfo, TextAddress, Info} from "./styled"
 import editPng from "./img/edit.png"
 import { goToProfileEdit, goToProfileEditAddress } from '../../Router/GoToPages';
 import { useHistory } from 'react-router-dom';
@@ -46,15 +46,17 @@ const Profile = () => {
 
   const renderOrders = () => {
     if (orders.length > 0) {
-      orders.map((order) => {
-        return ( 
-          <div key={order.createdAt} > {/* verificar se aparece pedido */}
-            <Linha> {order.restaurantName} </Linha>
-            <Linha> {order.createdAt} </Linha> 
-            <Linha> SUBTOTAL R${order.totalPrice} </Linha>
-          </div>
-        )
-      })
+      return (
+        orders.map((order) => {
+          return ( 
+            <CardContainer key={order.createdAt} > 
+              <Title> {order.restaurantName} </Title>
+              <TextOrder> {(new Date(order.createdAt).toLocaleDateString('pt-BR', {day:'numeric', month: 'long', year: 'numeric'}))} </TextOrder> 
+              <TextValue> SUBTOTAL R${order.totalPrice} </TextValue>
+            </CardContainer>
+          )
+        })
+      )
     } else {
       return (
         <div>Você não realizou nenhum pedido</div>
@@ -62,49 +64,39 @@ const Profile = () => {
     }
   }
 
-
-  console.log(profileInfo)
-  console.log(orders)
-
   return (
-    <Main>
-      <ContainerMain>
-        <div>
-          <HeaderTop backButton={false} title={"Meu Perfil"} />
-
-          <MeuPerfil>
-
-            <AlinharEdit>
-              <Linha> {profileInfo.name} </Linha>
-              <img src={editPng} onClick={() => goToProfileEdit(history)} />
-            </AlinharEdit>
-
-            <Linha> {profileInfo.email} </Linha>
-            <Linha> {profileInfo.cpf} </Linha>
-          </MeuPerfil>
-        </div>
+    <div>
+      <HeaderTop backButton={false} title={"Meu Perfil"} />          
+      <ContainerPage>
+        <ContainerInfo>
+          <Info>
+            <TextInfo> {profileInfo.name} </TextInfo>
+            <TextInfo> {profileInfo.email} </TextInfo>
+            <TextInfo> {profileInfo.cpf} </TextInfo>
+          </Info>            
+          <Div>
+            <Image src={editPng} onClick={() => goToProfileEdit(history)} />
+          </Div>
+        </ContainerInfo>        
 
         <Cadastro>
-          <div>
-            <p>Endereço cadastrado </p>
-            <p> {profileInfo.address} </p>
-          </div>
-
-          <img src={editPng} onClick={() => goToProfileEditAddress(history)} />
+          <ContainerInfo>
+            <Info>        
+              <TextAddress>Endereço cadastrado </TextAddress>
+              <TextInfo> {profileInfo.address} </TextInfo>
+            </Info>
+            <Div>
+              <Image src={editPng} onClick={() => goToProfileEditAddress(history)} />
+            </Div>
+          </ContainerInfo>
         </Cadastro>
-
-        <ContainerHistorico>
-          
-          <Linha>Histórico de pedidos</Linha>
-
-          <Divisoria>
-          </Divisoria>
+            
+          <History>Histórico de pedidos</History>
 
           {renderOrders()}
+      </ContainerPage>
+    </div>
 
-        </ContainerHistorico>
-      </ContainerMain>
-    </Main>
   );
 }
   

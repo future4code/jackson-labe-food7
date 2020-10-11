@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 import axios from 'axios';
 import { baseUrl } from '../../Constants/axiosConstants';
@@ -32,7 +32,6 @@ const ProfileEditAddress = () => {
       })
     }
 
-
     useEffect(() => {
         getAddress()
     }, [])    
@@ -45,8 +44,7 @@ const ProfileEditAddress = () => {
         state: localStorage.getItem("state"),
         complement: localStorage.getItem("complement")
     })
-    
-    
+        
     const updateProfile = () => {
         const body = {
             street: form.street,
@@ -59,7 +57,6 @@ const ProfileEditAddress = () => {
 
         axios.put(`${baseUrl}/address`, body, headers)
         .then((response) => {
-            //console.log(body)
             console.log(response)
             alert("Endereço atualizados com sucesso!")
             localStorage.removeItem("street", "number", "neighbourhood", "city", "state")
@@ -81,7 +78,6 @@ const ProfileEditAddress = () => {
         updateProfile()
         
     }
-
 
     return (
         <Container className="App">
