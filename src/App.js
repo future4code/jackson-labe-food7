@@ -1,22 +1,3 @@
-// import React from 'react';
-// import './App.css';
-// import Router from './Router/Router';
-// import Alert from './Components/Alert/Alert'
-
-// function App() {
-//   return (
-//     <div className="App">
-//     <Router/>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
-
 import React, {useState } from 'react';
 import './App.css';
 import Router from './Router/Router';
@@ -27,11 +8,12 @@ function App() {
 
   //função passada via props para o ProductCard.js e estado controlado por ela
   const [orderData, setOrderData] = useState({restaurant: {}, products:[]})
-  console.log('App: ', orderData)
+  // console.log('App: ', orderData)
 
   const formatOrders = (restaurant, product, qtde) => {
-    console.log('App > formatOrders')
+    // console.log('App > formatOrders')
     const restaurantData = {
+      id: restaurant.id,
       name: restaurant.name,
       address: restaurant.address,
       shipping: restaurant.shipping,
@@ -73,9 +55,44 @@ function App() {
 
   return (
     <div className="App">
-      <Router formatOrders={formatOrders} orderData={orderData} />
+      <Router formatOrders={formatOrders} orderData={orderData} setOrderData={setOrderData} />
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=======================================================================
+//      CÓDIGO ANTIGO, ANTES DA LIGAÇÃO RESTAURANTE -> CARRINHO
+//=======================================================================
+  // import React from 'react';
+  // import './App.css';
+  // import Router from './Router/Router';
+  // import Alert from './Components/Alert/Alert'
+
+  // function App() {
+  //   return (
+  //     <div className="App">
+  //     <Router/>
+  //     </div>
+  //   );
+  // }
+
+  // export default App;

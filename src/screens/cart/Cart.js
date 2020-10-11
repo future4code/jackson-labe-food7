@@ -4,15 +4,22 @@ import { UserAddressBox, UserAddressLine, EmptyCartMsg, Freight, Main, PageBox, 
 import axios from 'axios'
 import { baseUrl } from '../../Constants/axiosConstants';
 import ProductCard from '../../Components/ProductCard/ProductCard'
+import { useHistory } from 'react-router-dom';
+import { goToHomePage } from '../../Router/GoToPages';
 
 function Cart(props) {
-    console.log('Cart > props.orderData', props.orderData)
-    const [subTotalPrice, setSubTotalPrice] = useState(0)
-    // const {name, shipping, deliveryTime} = props.orderData ? props.orderData.restaurant : '' 
+    // console.log('Cart > props.orderData', props.orderData)
+    const history = useHistory()
+
+    const restId = props.orderData.restaurant.id || null
     const name =  props.orderData.restaurant.name || null
     const shipping =  props.orderData.restaurant.shipping || null
     const deliveryTime =  props.orderData.restaurant.deliveryTime || null
     const restAddress =  props.orderData.restaurant.address || null
+    const freightPrice = shipping || 0
+
+    const [userAddress, setUserAddress] = useState('')
+    const [paymentMethod, setPaymentMethod] = useState(false)
 
     const calcTotalPrice = () => {
       let totalPrice = 0
@@ -21,9 +28,61 @@ function Cart(props) {
           totalPrice += (prod.price * prod.orderQtde)
         })
       }
-        console.log('totalPrice', totalPrice)
+        totalPrice += freightPrice
+        // console.log('totalPrice', totalPrice)
         return totalPrice
     }
+
+
+    const getFullAddress = () => {
+      const token = localStorage.getItem('token')
+      const baseHeader = {headers:{auth: token}}
+      axios.get(`${baseUrl}/profile/address`, baseHeader)
+        .then(response=>{
+          // console.log('Cart > getFullAddress', response.data.address)
+          setUserAddress(`${response.data.address.street}, ${response.data.address.number}`)
+        })
+        .catch(err=>{
+          console.log('Cart > getActiveOrder', err)
+        })
+    }
+
+    const placeOrder = () => {
+      if (props.orderData.products.length > 0) {
+        if (!paymentMethod) {
+          window.alert('Escolha a forma de pagamento antes de Confirmar a compra')
+        } else {
+          const products = props.orderData.products.map(prod=>{
+            return {id: prod.id, quantity: prod.orderQtde}
+          })
+          const body = {products: products, paymentMethod: paymentMethod}
+          const token = localStorage.getItem('token')
+          const baseHeader = {headers:{auth: token}}
+          
+          // console.log(`${baseUrl}/restaurants/${restId}/order`, body, baseHeader)
+
+          axios.post(`${baseUrl}/restaurants/${restId}/order`, body, baseHeader)
+            .then(response=>{
+              // console.log('placeOrder: ', response)
+              props.setOrderData({restaurant: {}, products:[]})
+              goToHomePage(history)
+            })
+            .catch(err => {
+              console.log('placeOrder: ', err)
+            })
+        }
+      }
+    }
+
+    const onChangeRadioButton = (event) => {
+      // console.log('onChangeRadioButton', event.target.value)
+      setPaymentMethod(event.target.value)
+    }
+
+    useEffect(()=>{
+      getFullAddress()
+    },[])
+
 
     let altProd = {
       category: "Salgado",
@@ -47,7 +106,7 @@ function Cart(props) {
     }
 
     const renderCards = () => {
-      return props.orderData ? 
+      return props.orderData.products.length > 0 && 
         props.orderData.products.map(prod=>{
           return (
             <ProductCard 
@@ -58,46 +117,22 @@ function Cart(props) {
               formatOrders={props.formatOrders}
             />
           )
-        }) :
-        <ProductCard 
-          restaurant={altProd}
-        />
-        // <EmptyCartMsg> <span> Carrinho vazio </span> </EmptyCartMsg>
-    }
-    
-    const freightPrice = props.orderData.restaurant.shipping || 0
-
-    
-    // const freightPrice = 10
-    // const altPrice = 65
-
-    const getActiveOrder = () => {
-      const token = localStorage.getItem('token')
-      const baseHeader = {headers:{auth: token}}
-      axios.get(`${baseUrl}/active-order`, baseHeader)
-        .then(response=>{
-          console.log('Cart > getActiveOrder', response.data.order)
-          setSubTotalPrice(response.data.order.totalPrice)
         })
-        .catch(err=>{
-          console.log('Cart > getActiveOrder', err)
-        })
+        // <ProductCard 
+        //   product={altProd}
+        // />
     }
-
-    useEffect(()=>{
-      getActiveOrder()
-    },[])
 
     return (
       <Main>
-        {console.log('calcTotalPrice', calcTotalPrice)}
-        {console.log('renderCards: ', renderCards) }
+        {/* {console.log('calcTotalPrice', calcTotalPrice)} */}
+        {/* {console.log('renderCards: ', renderCards) } */}
         <HeaderTop title={'Meu Carrinho'} backButton={false} />
         <PageBox>
           <PageBoxSon>
             <UserAddressBox>
               <UserAddressLine>Endereço de entrega</UserAddressLine>
-              <UserAddressLine>Rua Alessandra Vieira, 42</UserAddressLine>
+              <UserAddressLine>{userAddress}</UserAddressLine>
             </UserAddressBox>
             
             {renderRestAddress()}
@@ -115,18 +150,18 @@ function Cart(props) {
             <PaymentTitle> Forma de pagamento </PaymentTitle>
 
             <PaymentRadioLabel for='money' >
-              <PaymentRadio type='radio' id='money' name='paytype' value='money'/>
+              <PaymentRadio onChange={onChangeRadioButton} type='radio' id='money' name='paytype' value='money'/>
               Dinheiro
             </PaymentRadioLabel>
 
             <PaymentRadioLabel for='credcard' >
-              <PaymentRadio type='radio' id='credcard' name='paytype' value='credcard'/>
+              <PaymentRadio onChange={onChangeRadioButton} type='radio' id='creditcard' name='paytype' value='creditcard'/>
               Cartão de crédito
             </PaymentRadioLabel>
           </PageBoxSon>
 
           <PageBoxSon>
-            <ConfirmButton onClick={()=>window.alert('clicou confirmar')} > Confirmar </ConfirmButton>
+            <ConfirmButton  onClick={placeOrder} > Confirmar </ConfirmButton>
           </PageBoxSon>
         </PageBox>
       </Main>
