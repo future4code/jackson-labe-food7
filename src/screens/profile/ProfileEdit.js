@@ -11,47 +11,50 @@ const ProfileEdit = () => {
     const history = useHistory()
     const token = localStorage.getItem("token")
     const headers = { headers: { auth: token } }
-    const [ profileInfo, setProfileInfo ] = useState({})
-    
+    // const [ profileInfo, setProfileInfo ] = useState({})
 
     const getProfile = () => {
       axios.get(`${baseUrl}/profile`, headers)
       .then((response) => {
         console.log(response)
-        setProfileInfo(response.data.user)
+        // setProfileInfo(response.data.user)
+        // handleInputChange({target: {name: "name", value: profileInfo.name}})
+
+        localStorage.setItem("name", response.data.user.name)
+        localStorage.setItem("email", response.data.user.email)
+        localStorage.setItem("cpf", response.data.user.cpf)
       })
       .catch((error) => {
         console.log(error)
       })
     }
 
-    useEffect(() => {
-        getProfile()
-    }, [])
+    
 
     const {form, onChange}  = useForm({
-        name: `${profileInfo.name}`,
-        email: `${profileInfo.email}`,
-        cpf: `${profileInfo.cpf}`
+        name: localStorage.getItem("name"),
+        email: localStorage.getItem("email"),
+        cpf: localStorage.getItem("cpf")
     })
     
-    console.log(profileInfo.name)
-    console.log(form) // pq tá chegando undefined dentro do estado inicial do form se no console acima o valor chega ok?!
+
+    const handleInputChange = (event) =>{
+        const { name, value } = event.target
+        onChange(name, value)
+    }
+      
 
     const updateProfile = () => {
         const body = {
-            name: `${profileInfo.name}`,
-            email: `${profileInfo.email}`,
-            cpf: `${profileInfo.cpf}`
+            name: `${form.name}`,
+            email: `${form.email}`,
+            cpf: `${form.cpf}`
         }
 
         axios.put(`${baseUrl}/profile`, body, headers)
         .then((response) => {
-            console.log(response) // mesmo em caso de sucesso, console da resposta mostra os dados antigos
-            setProfileInfo(response.data.user)
+            console.log(response)
             alert("Dados atualizados com sucesso!")
-            // a requisição de atualizar os dados está sendo chamada e funcionando ok
-            // mas quando volta para a página do perfil, os dados continuam desatualizados
             goToProfile(history)
         })
         .catch((error) => {
@@ -60,17 +63,16 @@ const ProfileEdit = () => {
         })
     }
 
-    const handleInputChange = (event) =>{
-        const { name, value } = event.target
-        onChange(name, value)
-    }
-      
+    
     const handleSubmittion = (event) =>{
         event.preventDefault()
-        updateProfile()
-        
+        updateProfile()  
     }
 
+    useEffect(() => {
+        getProfile()
+        // handleInputChange({target: {name: "name", value: profileInfo.name}})       
+    }, [])
 
     return (
         <Container className="App">
