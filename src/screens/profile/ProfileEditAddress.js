@@ -6,8 +6,10 @@ import useForm from '../../Hooks/useForm';
 import { Text, InputContainer, Input, ButtonContainer, Button, Container } from './styled'
 import { useHistory } from 'react-router-dom';
 import { goToProfile } from '../../Router/GoToPages';
+import { useProtectPage } from '../../Hooks/useProtectPage';
 
 const ProfileEditAddress = () => {
+    useProtectPage()
     const history = useHistory()
     const token = localStorage.getItem("token")
     const headers = { headers: { auth: token } }

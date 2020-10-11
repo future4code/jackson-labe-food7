@@ -5,9 +5,11 @@ import axios from 'axios';
 import { baseUrl } from '../../Constants/axiosConstants'
 import { useParams } from 'react-router-dom';
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
+import { useProtectPage } from '../../Hooks/useProtectPage';
 
 
 const RestaurantPage = (props) => {
+  useProtectPage()
   const pathParams = useParams();
   // const token = localStorage.getItem("token")
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlR4UEJFM1Bhem13bGFqOTNyNFZvIiwibmFtZSI6Ik1hZyIsImVtYWlsIjoibWFnYWxpLXRlc3RlQGdtYWlsLmNvbSIsImNwZiI6IjExMS4xMTEuMTExLTkxIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIGRhIENhc2EsIDAwNyAtIEJhaXJybyBDZW50cm8iLCJpYXQiOjE2MDIwODM3MDl9.ZAuoJ4j90uFc8hPbLsl344hdSiIqkxqHnhH44QMcgKQ"

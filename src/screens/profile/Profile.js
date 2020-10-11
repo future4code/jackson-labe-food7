@@ -6,9 +6,11 @@ import { useHistory } from 'react-router-dom';
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
 import axios from 'axios';
 import { baseUrl } from '../../Constants/axiosConstants';
+import { useProtectPage } from '../../Hooks/useProtectPage';
 
 
 const Profile = () => {
+  useProtectPage()
   const history = useHistory()
   const token = localStorage.getItem("token")
   const headers = { headers: { auth: token } }

@@ -6,10 +6,12 @@ import { baseUrl } from '../../Constants/axiosConstants';
 import ProductCard from '../../Components/ProductCard/ProductCard'
 import { useHistory } from 'react-router-dom';
 import { goToHomePage } from '../../Router/GoToPages';
+import { useProtectPage } from '../../Hooks/useProtectPage';
 
 import useForm from '../../Hooks/useForm'
 
 function Cart(props) {
+    useProtectPage()
     // console.log('Cart > props.orderData', props.orderData)
     const history = useHistory()
 

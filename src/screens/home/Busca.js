@@ -6,10 +6,12 @@ import RestaurantCard from './RestaurantCard'
 import { SearchField } from './SearchField'
 import { useHistory } from 'react-router-dom'
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop'
+import { useProtectPage } from '../../Hooks/useProtectPage'
 
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
 
 function Busca() {
+  useProtectPage()
   const [restaurants, setRestaurants] = useState([])
   const [searchString, setSearchString] = useState('')
 
