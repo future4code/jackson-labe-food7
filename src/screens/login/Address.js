@@ -4,9 +4,10 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import useForm from '../../Hooks/useForm';
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop';
+import { useProtectPage } from '../../Hooks/useProtectPage';
 
 const Address = () => {
-    
+  useProtectPage()
   const history = useHistory()
   const { form, onChange, resetState } = useForm({
     street:"",

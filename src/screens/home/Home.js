@@ -7,6 +7,7 @@ import { SearchField } from './SearchField'
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop'
 import { baseUrl } from '../../Constants/axiosConstants'
 import Alert from '../../Components/Alert/Alert'
+import { useProtectPage } from '../../Hooks/useProtectPage'
 
 
 // const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
@@ -15,6 +16,7 @@ import Alert from '../../Components/Alert/Alert'
 
 
 function Home() {
+    useProtectPage()
     const [restaurants, setRestaurants] = useState([])
     const [category, setCategory] = useState('')
     const [activeOrder, setActiveOrder] = useState()
