@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { FilterBar, FilterButton, Header, PageBox, Title, TitleIn, BackButton, Main, CardPopup } from './styled'
+import { FilterBar, FilterButton, PageBox, Main, CardPopup } from './styled'
 import RestaurantCard from './RestaurantCard'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { SearchField } from './SearchField'
 import { HeaderTop } from '../../Components/HeaderTop/HeaderTop'
 import { baseUrl } from '../../Constants/axiosConstants'
+import Alert from '../../Components/Alert/Alert'
 
 
 // const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsA'
@@ -16,11 +17,13 @@ import { baseUrl } from '../../Constants/axiosConstants'
 function Home() {
     const [restaurants, setRestaurants] = useState([])
     const [category, setCategory] = useState('')
+    const [activeOrder, setActiveOrder] = useState()
     const history = useHistory()
-    
+
+    const token = localStorage.getItem('token')
+    const baseHeader = {headers:{auth: token}}
+
     const getRestaurants = () => {
-      const token = localStorage.getItem('token')
-      const baseHeader = {headers:{auth: token}}
       axios.get(`${baseUrl}/restaurants`, baseHeader)
         .then(response=>{
           // console.log(response.data.restaurants)
@@ -31,10 +34,22 @@ function Home() {
         })
     }
 
+    const getActiveOrder = () => {
+      axios.get(`${baseUrl}/active-order`, baseHeader)
+        .then(response=>{
+          console.log('Home > getActiveOrder:', response.data.order)
+          setActiveOrder(response.data.order)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    }
+
 
     useEffect(()=>{
       // storageToken()
       getRestaurants()
+      getActiveOrder()
     },[])
 
 
@@ -76,6 +91,11 @@ function Home() {
         return categories
       }
 
+      const renderActiveOrder = () => {
+        if (activeOrder) {
+          return <Alert activeOrder={activeOrder} />
+        }
+      }
 
       const onClickCategory = (category) => {
         // alert(category)
@@ -100,13 +120,13 @@ function Home() {
     return (
       <Main>
         <HeaderTop backButton={false} title={'FutureEats'} />
-        <PageBox>
+        <PageBox activeOrder={activeOrder} >
           <SearchField history={history} />
           <FilterBar> {renderCategories()} </FilterBar>
           {renderCards()}
           {/* <RestaurantCard restaurant={retauranteTeste}></RestaurantCard> */}
         </PageBox>
-        {/* <CardPopup/> */}
+        {renderActiveOrder()}
       </Main>
     )
   }
