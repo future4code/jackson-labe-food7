@@ -4,8 +4,6 @@ import styled from "styled-components"
 export const PageContainer = styled.div`
   display:flex;
   flex-direction:column;
-  /* width: 360px;
-  height: 640px; */
   width: 100%;
   min-height: 100vh;
   align-items: center;
