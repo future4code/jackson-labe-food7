@@ -1,4 +1,5 @@
 import styled from "styled-components"
+// COMENTARIO ALEATORIO PRA ENTREGA
 
 export const ContainerInfo = styled.div`
   width: 360px;
@@ -160,7 +161,6 @@ export const TextInfo = styled.p`
   margin: 0;
 `
 
-// **************** PROFILE EDIT ******************
 export const InputContainer = styled.div`
   width: 360px;
   height: 72px;
